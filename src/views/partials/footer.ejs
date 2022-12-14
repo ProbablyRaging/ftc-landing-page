@@ -1,0 +1,51 @@
+</div>
+<% if (home) { %>
+<footer class="footer footer--alt">
+    <div class="footer__alt__top-section">
+        <div class="footer__alt__wave">
+            <svg viewBox="0 0 1920 128" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer__alt__wave__image ">
+                <path d="M0 45.9613C966 -128.599 1066.5 302.23 1920 42.2473V0L6.86646e-05 0L0 45.9613Z" fill="#F7F8FA"></path>
+            </svg>
+        </div>
+        <div class="container container--large">
+            <div class="footer__row flex--justify-space-between flex--align-center row--reverse">
+                <div class="col col--md-6 footer__alt__top-section__image">
+                    <div class="footer__lottie">
+                        <% const lotties = ['wumpus_celebrate', 'wumpus_wave', 'wumpus_joy', 'wumpus_smile'] %>
+                        <% function randNum(min, max) { %>
+                        <% return Math.floor(Math.random() * (max - min + 1) + min) %>
+                        <% } %>
+                        <% const ranLottie = lotties[randNum(0, lotties.length - 1)] %>
+                        <lottie-player src="/lotties/<%= ranLottie %>.json" background="transparent" speed="1" loop autoplay></lottie-player>
+                    </div>
+                </div>
+                <div class="col col--lg-5 col--md-6 content__area">
+                    <h2 class="footer__promo__heading">Ready to create better content?</h2>
+                    <p>There are already <span class="total-member-count"><%= totalMembers %></span> content creators using ForTheContent and you're missing out</p>
+                    <p>
+                        <button onclick="window.location='https://discord.gg/forthecontent'" target="_blank" class="button button--primary button--with-arrow">
+                            <i class="bi bi-discord button__icon"></i> Join The Discord Server
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer__legal__container footer__legal__container--alt">
+        <div class="container container--large">
+            <div class="footer__legal content__area">
+                <p>© 2022 ForTheContent</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    $('.burger').click(function () {
+        $('.nav__menu').slideToggle(150);
+        $('html').toggleClass('mobile-nav--is-open');
+        $('.nav__menu').toggleClass('nav__menu--hide').css({ display: "flex" });
+    });
+</script>
+<% } %>

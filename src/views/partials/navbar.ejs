@@ -1,0 +1,135 @@
+<script>
+    function smoothRedirect(location) {
+        console.log(top.location.pathname.split('/'));
+        if (top.location.pathname.split('/')[1] === location && top.location.pathname.split('/').length < 3) return window.scrollTo(0, 0);
+        $('.menu-item').click(function () {
+            $('body').css('background-color', 'var(--bg)');
+            $('.loader').animate({
+                marginTop: 80,
+                opacity: 0,
+            }, 200, function () {
+                window.location.href = `/${location}`
+            });
+        });
+    }
+
+    if (top.location.pathname.split('/')[1] !== '/') {
+        $('.nav').css("background-color", '#1a1e23');
+        $('body').css('background-color', 'var(--bg)');
+    }
+
+    $(document).ready(function () {
+        if (top.location.pathname !== '/') {
+            if (document.documentElement.scrollTop <= 200) window.scrollTo(0, 0);
+        }
+
+        if (document.documentElement.scrollTop < 10) {
+            $('.nav').attr('style', 'background-color: transparent !important');
+        }
+
+        if (top.location.pathname.split('/')[1] === 'resources') {
+            $('.nav').attr('style', 'background-color: var(--bg)');
+        }
+    });
+
+    $(document).scroll(function () {
+        if (top.location.pathname.split('/')[1] !== 'resources') {
+            if (document.documentElement.scrollTop > 10) {
+                $('.nav').css("background-color", '#1a1e23');
+            } else {
+                $('.nav').attr('style', 'background-color: transparent !important');
+            }
+        }
+    });
+</script>
+
+<nav class="nav">
+    <div class="nav__wrapper container container--full" id="nav">
+        <ul class="nav__ul">
+            <li class="nav__li nav__logo">
+                <div class="nav__brand__wrapper">
+                    <a class="nav__brand__a" href="/">
+                        <img class="nav__brand" src="/images/android-chrome-192x192.png" alt="forthecontent a discord server for content creators">
+                    </a>
+                </div>
+
+            </li>
+            <li class="menu-item nav__li nav__li--desktop-only">
+                <a onclick="smoothRedirect('')" class="nav__li__a">
+                    <div><span>Home</span></div>
+                </a>
+            </li>
+            <li class="menu-item nav__li nav__li--desktop-only nav__li-features">
+                <a href="/#features" class="nav__li__a">
+                    <div><span>Features</span></div>
+                </a>
+            </li>
+            <li class="menu-item nav__li nav__li--desktop-only nav__li-features">
+                <a href="/moved" class="nav__li__a">
+                    <div><span>Resources</span></div>
+                </a>
+            </li>
+            <li class="menu-item nav__li nav__li--desktop-only nav__li-features">
+                <a href="/moved" class="nav__li__a">
+                    <div><span>Forums</span></div>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav__ul sematic-only">
+            <li class="nav__li nav__li--desktop-only">
+                <button class="button button--primary button--dense" onclick="window.location='https://discord.gg/forthecontent'"><i class="bi bi-discord button__icon"></i> Discord Server</button>
+            </li>
+            <li class="nav__li nav__li--mobile-only nav__li__a">
+                <button class="nav__mobile nav__button" aria-label="Menu Button Toggle">
+                    <div class="burger">
+                        <div class="burger__canvas">
+                            <div class="burger__canvas__open burger__canvas__open--1"></div>
+                            <div class="burger__canvas__open burger__canvas__open--2"></div>
+                            <div class="burger__canvas__open burger__canvas__open--3"></div>
+                            <div class="burger__canvas__close burger__canvas__close--1"></div>
+                            <div class="burger__canvas__close burger__canvas__close--2"></div>
+                        </div>
+                    </div>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="nav__menu nav__menu--hide">
+        <ul class="nav__menu__top">
+            <li class="menu-item js--close-mobile-nav nav__li nav__li--mobile">
+                <a href="/" class="nav__li__a">
+                    <div>
+                        <span>Home</span>
+                    </div>
+                </a>
+            </li>
+            <li class="menu-item js--close-mobile-nav nav__li nav__li--mobile">
+                <a href="/moved" class="nav__li__a">
+                    <div>
+                        <span>Resources</span>
+                    </div>
+                </a>
+            </li>
+            <li class="menu-item js--close-mobile-nav nav__li nav__li--mobile">
+                <a href="/moved" class="nav__li__a">
+                    <div>
+                        <span>Forums</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="nav__menu__bottom">
+            <button class="button button--secondary button--dense" onclick="window.location='https://discord.gg/forthecontent'">Discord Server</button>
+            <div class="nav__menu__separator"></div>
+        </div>
+    </div>
+</nav>
+
+<div class="loader" style="margin-top: 80px; opacity: 0;">
+
+    <script>
+        $('.loader').animate({
+            marginTop: 0,
+            opacity: 1,
+        });
+    </script>
