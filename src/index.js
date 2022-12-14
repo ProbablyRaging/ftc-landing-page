@@ -11,8 +11,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 
-console.log(port);
-
 app.use(cors());
 
 // Minify CSS HTML
@@ -34,6 +32,7 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // Routes
+const aboutRoute = require('./routes/about');
 const movedRoute = require('./routes/moved');
 const errorRoute = require('./routes/error');
 
@@ -48,6 +47,7 @@ app.use(express.json());
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // Middleware
+app.use('/about', aboutRoute);
 app.use('/moved', movedRoute);
 app.use('/error', errorRoute);
 
